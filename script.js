@@ -3,12 +3,24 @@ const hexNumber = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"];
 //------------
 let toCal = document.getElementById("to-cal");
 var sum = 0;
+let total = document.getElementById("to-cal");
+
+//-----
+function divupdate(n = 0){
+  if ((n === 0)) {
+    sum = 0;
+  }
+  sum += n;
+  total.innerHTML = sum;
+};
+
 //Remove-------
 function revDiv() {
   const elements = document.getElementsByClassName("divCss");
   while (elements.length > 0) {
     elements[0].parentNode.removeChild(elements[0]);
   }
+  divupdate();
 }
 //--------------
 
@@ -16,18 +28,18 @@ function revDiv() {
 const btn = document.querySelector("#btn");
 const resDIV = document.getElementById("resDiv");
 btn.addEventListener("click", addDiv);
-let total = document.getElementById("to-cal");
 
 total.innerHTML = sum;
 
 function addDiv() {
   let hexCol = "#";
   var colVal = document.getElementById("text-value");
-debugger;
   var val = document.getElementById("text-value").value;
-  sum = eval(sum + Number(val));
-  alert(sum);
-  total.innerHTML = sum;
+
+  //-------
+  divupdate(Number(val));
+  total.classList.add("animate__animated", "animate__fadeInDown");
+  //--------
 
   if (val > 0) {
     //colors---------
